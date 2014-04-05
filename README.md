@@ -7,11 +7,12 @@ The basic rules for submitting a Pull Request are as follows:
 
 * New functionality is typically driven off the top-level menu for the extension.  If your example is command driven, add a submenu item to the main extension menu.
 * Code should be well documented.
-* Code should be reasonably free of Linting problems.
+* Code should be free of Linting problems.  Please edit the jslint directives if needed.
+* Only use current Brackets APIs.  Consider submitting a new PR if you know your prior contribution has been altered by a Brackets API change.
 * If your example demonstrates specific text formatting, consider including a sample document which you load with appropriate text/code that illustrates your example.
 * Make sure any code you do not own the copyright to is properly attrbuted and/or complies with the license of the source.
 
-**Note**: the extension is only a barebones clone of the "Hello World" example from the Brackets website... *for now*.  Until it has a little more *meat* I am not going to upload it to the Brackets Extension Registry.  In the meantime you can import the extension into Brackets from URL: 
+**Note**: the extension is only just a beginning and doesn't have many examples... *for now*.  Until it has a little more *meat* I am not going to upload it to the Brackets Extension Registry.  In the meantime you can import the extension into Brackets from URL: 
 
 1. Open `Extension Manager` in Brackets
 1. Click the `Import from URL...` button in the lower-left corner
@@ -19,3 +20,7 @@ The basic rules for submitting a Pull Request are as follows:
 
 
 Feel free to log issues, submit pull requests or email me (email address is in the package.json) with questions, additions or ideas for this extension.
+
+### Progress to date:
+* **Hello World example** which inserts "Hello, world!" into the current editor at current cursor position
+* **Toggle Preferences example** which toggles the state of an extension preference with a menu item
