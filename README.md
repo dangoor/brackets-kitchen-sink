@@ -24,3 +24,4 @@ Feel free to log issues, submit pull requests or email me (email address is in t
 ### Progress to date:
 * **Hello World example** which inserts "Hello, world!" into the current editor at current cursor position
 * **Toggle Preferences example** which toggles the state of an extension preference with a menu item
+* **Simple Modal Dialog example** which opens a modal dialog from an HTML file and accepts input (added Apr 6,2014)
