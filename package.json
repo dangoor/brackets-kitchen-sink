@@ -3,7 +3,7 @@
     "title": "Kitchen Sink Example Extension",
     "description": "Example extension with as many features and modules as possible to teach extension authors about Brackets extenstion authoring",
     "homepage": "https://github.com/m0j0r1s1ng/brackets-kitchen-sink",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "author": "Andrew MacKenzie <a.mackenzie@gmail.com> (http://github.com/m0j0r1s1ng)",
     "engines": {
         "brackets": ">=0.37.0"

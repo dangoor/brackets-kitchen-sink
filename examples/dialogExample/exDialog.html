@@ -1,0 +1,21 @@
+<!-- the modal dialog HTML code.  Note that instead of creating a new class, install-extension-dialog was
+    "borrowed" which styles the URL input field to be the full width of the dialog -->
+<div id="example-dialog" class="install-extension-dialog modal">
+	<div class="modal-header">
+		<h1 class="dialog-title">
+            Dialog Example
+        </h1>
+	</div>	
+	<div class="modal-body">
+        <div class="field-container input-field">
+            <input id="dialogtxt" type="text" placeholder="Enter some text to display" class="url" />
+        </div>
+        <div class="field-container message-field">
+            <div class="message"></div>
+        </div>
+    </div>
+	<div class="modal-footer">
+		<button data-button-id="ok" class="dialog-button btn primary">OK</button>
+		<button data-button-id="cancel" class="dialog-button btn">Cancel</button>
+	</div>
+</div>

@@ -39,6 +39,10 @@ define(function (require, exports, module) {
         EditorManager       = brackets.getModule("editor/EditorManager"),
         PreferencesManager  = brackets.getModule("preferences/PreferencesManager"),
         Menus               = brackets.getModule("command/Menus");
+    
+    // requirejs loading of dependencies for this extension.  
+    // @contributors: add your examples as dependencies below
+    var dialogExample      = require("examples/dialogExample/dialogExample");
         
     // add the top-level menu for "Kitchen Sink" after the Navigate menu
     var topMenu             = Menus.addMenu("Kitchen Sink", "brackets-kitchen-sink", Menus.AFTER, Menus.AppMenuBar.NAVIGATE_MENU);
@@ -46,7 +50,8 @@ define(function (require, exports, module) {
     // define the hello world command
     // use package-style naming to avoid collisions       
     var cmdHelloWorld       = "kitchensink.writehello",
-        cmdToggleEnabled    = "kitchensink.toggleenabled";
+        cmdToggleEnabled    = "kitchensink.toggleenabled",
+        cmdShowDialog       = "kitchensink.showdialog";
     
     // grab the set of preferences associated with this extension
     var prefs               = PreferencesManager.getExtensionPrefs("brackets-kitchen-sink");
@@ -61,8 +66,11 @@ define(function (require, exports, module) {
  * current editor window.  If the editor window is not in focus, then nothing happens.
  * 
  */
-    
-    // Function to run when the menu item is clicked
+        
+    /**    
+     * handles the cmdHelloWorld command and inserts text into the current document
+     * at the current cursor position   
+     */    
     function handleHelloWorld() {
         var editor = EditorManager.getFocusedEditor(),
             insertionPos;
@@ -76,7 +84,7 @@ define(function (require, exports, module) {
 
     // Create a menu item bound to the hello world example command
     // The label of the menu item is the name we gave the command (see above)
-    topMenu.addMenuItem(cmdHelloWorld);
+    topMenu.addMenuItem(cmdHelloWorld, "Ctrl-Alt-h");
 
 /*
  * Main code for the toggle of a preference example
@@ -101,7 +109,11 @@ define(function (require, exports, module) {
     // define pref(s) for preferences example
     prefs.definePreference("enabled", "boolean", false);
     
-    // function to toggle the preference "enabled" and add it to the menu
+    
+    
+    /**    
+     * toggle the preference "enabled" and add it to the menu    
+     */
     function toggleEnabled() {
         prefEnabled = !prefEnabled;
         prefs.set("enabled", prefEnabled);
@@ -113,4 +125,29 @@ define(function (require, exports, module) {
     CommandManager.register("Toggle Enabled Preference", cmdToggleEnabled, toggleEnabled);
     // add a submenu item for the "cmdToggleEnabled" command
     topMenu.addMenuItem(cmdToggleEnabled);
+
+/*
+ * Dialog example
+ * ==============
+ * This is a very simple example of adding a modal dialog to your extension.
+ * A menu item is created to trigger the display of the dialog.
+ * 
+ * This example also shows the separation of the examples into multiple modules
+ * using the built-in requirejs library.  In this main.js, we register the command and the menuitem
+ * and called the exported function "showDialog" from the dialogExample.js module.  This is somewhat arbitrary
+ * as the menu and command could have been handled in the dialogExample module too.
+*/
+    
+    /**    
+     * Calls the showDialog() method of the dialogExample module to show the modal dialogExample
+     * used in this example code.    
+     */    
+    function showDialog() {
+        // exported from the dialogExample module
+        dialogExample.showDialog();
+    }
+    // register the command for the show dialog example
+    CommandManager.register("Show Example Dialog", cmdShowDialog, showDialog);
+    // add a submenu item for the "cmdShowDialog" command
+    topMenu.addMenuItem(cmdShowDialog);
 });
