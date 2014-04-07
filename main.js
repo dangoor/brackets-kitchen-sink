@@ -70,7 +70,7 @@ define(function (require, exports, module) {
     /**    
      * handles the cmdHelloWorld command and inserts text into the current document
      * at the current cursor position   
-     */    
+     */
     function handleHelloWorld() {
         var editor = EditorManager.getFocusedEditor(),
             insertionPos;
@@ -103,11 +103,12 @@ define(function (require, exports, module) {
  * "brackets-kitchen-sink.enabled": preference.  As you toggle the menu item, you will see
  * the preference change from "true" to "false", etc...
  */
-        
-    // vars for preferences example
-    var prefEnabled         = false;
+
     // define pref(s) for preferences example
-    prefs.definePreference("enabled", "boolean", false);
+    prefs.definePreference("enabled", "boolean", false)
+        .on("change", function () {
+            CommandManager.get(cmdToggleEnabled).setChecked(prefs.get("enabled"));
+        });
     
     
     
@@ -115,10 +116,9 @@ define(function (require, exports, module) {
      * toggle the preference "enabled" and add it to the menu    
      */
     function toggleEnabled() {
-        prefEnabled = !prefEnabled;
-        prefs.set("enabled", prefEnabled);
+        var prefEnabled = prefs.get("enabled");
+        prefs.set("enabled", !prefEnabled);
         prefs.save();
-        CommandManager.get(cmdToggleEnabled).setChecked(prefEnabled);
     }
     
     // register the command for the toggle of the "enabled" preference
@@ -141,7 +141,7 @@ define(function (require, exports, module) {
     /**    
      * Calls the showDialog() method of the dialogExample module to show the modal dialogExample
      * used in this example code.    
-     */    
+     */
     function showDialog() {
         // exported from the dialogExample module
         dialogExample.showDialog();
